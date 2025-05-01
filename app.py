@@ -24,21 +24,21 @@ billionaires['Age Group'] = billionaires['age'].apply(age_group)
 # Biểu đồ
 fig = px.bar(
     billionaires,
-    x='FinalWorth',
-    y='Age Group',
-    color='Age Group',
+    x='finalWorth',
+    y='age',
+    color='age',
     orientation='h',
     hover_data={'Person': True, 'FinalWorth': ':.2f'},
-    labels={'FinalWorth': 'Giá trị ròng (tỷ USD)', 'Age Group': 'Nhóm tuổi'},
+    labels={'finalWorth': 'Giá trị ròng (tỷ USD)', 'age': 'Nhóm tuổi'},
     title='Top 50 Tỷ phú theo nhóm tuổi và giá trị ròng'
 )
 
 # Tổng hợp bảng
 age_group_summary = (
-    billionaires.groupby('Age Group')
+    billionaires.groupby('age')
     .agg(
         So_Top=('Person', 'count'),
-        Tong_Gia_Tri_Rong=('FinalWorth', 'sum')
+        Tong_Gia_Tri_Rong=('finalWorth', 'sum')
     )
     .reset_index()
 )
