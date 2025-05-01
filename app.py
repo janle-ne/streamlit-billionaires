@@ -19,7 +19,7 @@ def age_group(age):
     else:
         return 'Trên 70'
 
-billionaires['Age Group'] = billionaires['Age'].apply(age_group)
+billionaires['Age Group'] = billionaires['age'].apply(age_group)
 
 # Biểu đồ
 fig = px.bar(
