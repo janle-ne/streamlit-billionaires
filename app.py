@@ -12,7 +12,8 @@ df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
 df.rename(columns={
     'finalWorth': 'NetWorth',
     'personName': 'Name',
-    'age': 'Age'
+    'age': 'Age',
+    'state': 'State'  # Assuming there's a 'state' column for location (you may need to adjust this)
 }, inplace=True)
 
 # Drop missing Age or NetWorth
@@ -35,15 +36,25 @@ def get_age_group(age):
 # Apply age group
 df["Age Group"] = df["Age"].apply(get_age_group)
 
-# Plot bar chart
+# Add state filter logic
+option = st.selectbox(
+    'Please select state:',
+    ('California', 'Florida', 'Texas', 'New York', 'Illinois')
+)
+st.caption(f"You selected: {option}")
+
+# Filter data based on the selected state
+filtered_df = df[df['State'] == option]
+
+# Plot bar chart for filtered state
 fig = px.bar(
-    df,
+    filtered_df,
     x="NetWorth",
     y="Age Group",
     orientation="h",
     color="Age Group",
     hover_data=["Name", "NetWorth"],
-    title="Top 50 Billionaires by Age Group",
+    title=f"Top 50 Billionaires by Age Group in {option}",
 )
 
 # Layout: chart and table
@@ -54,6 +65,6 @@ with col1:
 
 with col2:
     st.subheader("Summary Table")
-    table = df.groupby("Age Group")[["NetWorth"]].count().rename(columns={"NetWorth": "Count"})
-    table["Total Net Worth ($B)"] = df.groupby("Age Group")["NetWorth"].sum().round(2)
+    table = filtered_df.groupby("Age Group")[["NetWorth"]].count().rename(columns={"NetWorth": "Count"})
+    table["Total Net Worth ($B)"] = filtered_df.groupby("Age Group")["NetWorth"].sum().round(2)
     st.dataframe(table)
