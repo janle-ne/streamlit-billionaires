@@ -6,7 +6,7 @@ import plotly.express as px
 billionaires = pd.read_csv('BillionairesData.csv', encoding='utf-8-sig')
 
 # Chọn top 50 theo giá trị ròng
-billionaires = billionaires.sort_values(by='FinalWorth', ascending=False).head(50)
+billionaires = billionaires.sort_values(by='finalWorth', ascending=False).head(50)
 
 # Nhóm tuổi
 def age_group(age):
