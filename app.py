@@ -8,27 +8,17 @@ st.title("💰 Which Age Group Holds the Most Wealth?")
 
 # Thêm nội dung vào website
 st.markdown("""
-<div style="background-color:#fdf6e3;padding:1rem;border-radius:10px">
-<h3><b>How Does Age Impact Wealth?</b></h3>
-<p>
-Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. 
-<span style="background-color:#ffe4b5">Younger billionaires</span> tend to dominate sectors like 
-<span style="background-color:#ffdab9">technology</span>, <span style="background-color:#e0ffff">social media</span>, and 
-<span style="background-color:#e6e6fa">e-commerce</span>, which offer massive returns in relatively short timeframes.
-</p>
-<p>
-On the other hand, <span style="background-color:#e0ffff">older billionaires</span> usually have 
-<span style="background-color:#ffe4e1">diversified portfolios</span> across sectors such as 
-<span style="background-color:#fafad2">luxury goods</span>, <span style="background-color:#e0ffff">finance</span>, and 
-<span style="background-color:#f5f5dc">energy</span>. Their vast fortunes have often been built over several decades through continuous investment and business development.
-</p>
-<hr>
-<h4><b>Key Questions:</b></h4>
-<ul>
-<li><b>Which Age Group Holds the Most Wealth?</b></li>
-</ul>
-</div>
-""", unsafe_allow_html=True)
+### **How Does Age Impact Wealth?**
+
+Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. **Younger billionaires** tend to dominate sectors like **technology**, **social media**, and **e-commerce**, which offer massive returns in relatively short timeframes. Many of today’s **young billionaires** made their fortunes by tapping into the rapid growth of these innovative industries.
+
+On the other hand, **older billionaires** usually have **diversified portfolios** across sectors such as **luxury goods**, **finance**, and **energy**. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
+
+---
+
+### **Key Questions:**
+- **Which Age Group Holds the Most Wealth?**
+""")
 
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
@@ -92,9 +82,9 @@ fig.update_layout(
     xaxis_title="Age",
     yaxis_title="Net Worth (Billion $)",
     hoverlabel=dict(
-        bgcolor="black",
-        font_color="white",
-        font_size=12
+        bgcolor="black",  # Nền hover là màu đen
+        font_color="white",  # Chữ trong hover là màu trắng
+        font_size=12  # Kích thước chữ
     )
 )
 
@@ -106,38 +96,51 @@ with col1:
 
 with col2:
     st.subheader("📊 Top 10 Billionaires")
+    # Hiển thị bảng có thêm cột Rank
     st.dataframe(
-        top10[["Rank", "Name", "Age", "Gender", "NetWorth"]].reset_index(drop=True),
+        top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),
         use_container_width=True
     )
 
-# Phần gender chart
+# Gender Ratio of Billionaires Content
 st.markdown("""
----
-<h2 style="margin-top:2rem">🌍 Gender Ratio of Billionaires by Country</h2>
-<div style="background-color:#fdf6e3;padding:1rem;border-radius:10px">
-<p>
-The distribution of billionaire wealth also reveals gender disparities. 
-While men still dominate the billionaire list globally, a growing number of 
-<span style="background-color:#ffdcdc">female billionaires</span> are emerging, especially in sectors like fashion, inheritance, and family business.
-</p>
-<p>
-Exploring gender distribution by country helps highlight both 
-<span style="background-color:#e0ffff">economic</span> and 
-<span style="background-color:#ffe4e1">cultural</span> factors that may influence wealth-building opportunities.
-</p>
-</div>
-""", unsafe_allow_html=True)
+### **Gender Ratio of Billionaires**
 
-# Load data
+In recent years, discussions about gender equality in business and wealth distribution have gained momentum. One area of interest is the gender ratio of billionaires globally. While the number of women billionaires is growing, the wealthiest individuals are still predominantly male. This gender disparity can be attributed to various factors, such as access to resources, societal expectations, and opportunities available in different industries.
+
+### **Key Insights:**
+- **Male Billionaires:** The majority of billionaires worldwide are men, particularly in industries such as finance, energy, and manufacturing, where historical male dominance has been strong. These sectors have traditionally been the backbone of wealth creation, leading to a higher concentration of male billionaires.
+  
+- **Female Billionaires:** Although fewer in number, female billionaires are making strides, especially in sectors such as retail, media, and fashion. Women who inherit wealth or have entrepreneurial ventures in consumer-driven sectors are increasingly appearing on the list of the wealthiest individuals.
+
+- **Emerging Trends:** There has been a notable increase in the number of self-made female billionaires, particularly in technology, pharmaceuticals, and beauty industries. These sectors offer opportunities for innovation and growth, allowing women to break through traditional barriers.
+
+### **Challenges and Opportunities for Women Billionaires:**
+Despite the increasing number of female billionaires, women still face significant barriers to wealth accumulation compared to their male counterparts. These challenges include:
+- Limited access to venture capital and business networks
+- Gender biases in investment opportunities and leadership roles
+- Societal expectations around the roles of women in both family and business
+
+However, as societal norms evolve and more women enter the business world with groundbreaking ideas, the gap is slowly narrowing. Female billionaires like **Oprah Winfrey**, **Kylie Jenner**, and **Francoise Bettencourt Meyers** show that women can successfully create and grow massive fortunes.
+
+--- 
+
+### **Key Question:**
+- **What is the gender distribution of billionaires by country?**
+- **Which countries have a more balanced gender ratio among billionaires?**
+""")
+
+# Gender Ratio Visualization
+# Load data for gender distribution by country
 @st.cache_data
 def load_data():
     df = pd.read_csv("BillionairesData.csv")
-    df = df.dropna(subset=["country", "gender"])
-    df["gender"] = df["gender"].map({"F": "Female", "M": "Male"})
+    df = df.dropna(subset=["country", "gender"])  # Handle missing data
     return df
 
 df = load_data()
+
+st.title("🌍 Gender Ratio Comparison of Billionaires by Country")
 
 # Select country
 countries = df['country'].value_counts().index.tolist()
@@ -151,7 +154,7 @@ gender_counts = df_country['gender'].value_counts().reset_index()
 gender_counts.columns = ['Gender', 'Count']
 gender_counts['Percentage'] = (gender_counts['Count'] / gender_counts['Count'].sum() * 100).round(2)
 
-# Donut chart
+# Donut chart (Plotly)
 fig = px.pie(
     gender_counts,
     values='Count',
@@ -160,11 +163,7 @@ fig = px.pie(
     color_discrete_sequence=px.colors.qualitative.Set3,
     title=f"Gender Distribution of Billionaires in {selected_country}"
 )
-fig.update_traces(
-    textinfo='percent+label', 
-    hoverinfo='label+percent+value', 
-    pull=[0.05] * len(gender_counts)
-)
+fig.update_traces(textinfo='percent+label', hoverinfo='label+percent+value', pull=[0.05] * len(gender_counts))
 fig.update_layout(
     showlegend=True,
     margin=dict(t=50, b=20),
