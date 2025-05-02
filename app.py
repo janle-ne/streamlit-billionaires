@@ -63,6 +63,9 @@ if selected_group != "All":
 # Chọn top 10 theo tài sản
 top10 = filtered_df.sort_values(by="NetWorth", ascending=False).head(10)
 
+# Thêm cột xếp hạng
+top10['Rank'] = top10['NetWorth'].rank(ascending=False, method='min')
+
 # Biểu đồ
 fig = px.bar(
     top10,
@@ -73,10 +76,16 @@ fig = px.bar(
     color="Age",
     title="Top 10 Billionaires by Net Worth in Selected Age Group"
 )
+
+# Cập nhật hover label
 fig.update_layout(
     xaxis_title="Age",
     yaxis_title="Net Worth (Billion $)",
-    hoverlabel=dict(bgcolor="white", font_size=12)
+    hoverlabel=dict(
+        bgcolor="black",  # Nền hover là màu đen
+        font_color="white",  # Chữ trong hover là màu trắng
+        font_size=12  # Kích thước chữ
+    )
 )
 
 # Hiển thị biểu đồ và bảng song song
@@ -87,7 +96,8 @@ with col1:
 
 with col2:
     st.subheader("📊 Top 10 Billionaires")
+    # Hiển thị bảng có thêm cột Rank
     st.dataframe(
-        top10[["Name", "Age", "Gender", "NetWorth"]].reset_index(drop=True),
+        top10[["Rank", "Name", "Age", "Gender", "NetWorth"]].reset_index(drop=True),
         use_container_width=True
     )
