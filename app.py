@@ -2,69 +2,51 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(layout="wide")
-st.title("Top 50 Billionaires by Net Worth (2023)")
+st.set_page_config(page_title="Gender Ratio of Billionaires", layout="wide")
 
-# Load dataset
-df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
+# Load data
+@st.cache_data
+def load_data():
+    df = pd.read_csv("BillionairesData.csv")
+    df = df.dropna(subset=["country", "gender"])  # Handle missing data
+    return df
 
-# Rename columns for clarity
-df.rename(columns={
-    'finalWorth': 'NetWorth',
-    'personName': 'Name',
-    'age': 'Age',
-    'state': 'State'  # Assuming there's a 'state' column for location (you may need to adjust this)
-}, inplace=True)
+df = load_data()
 
-# Drop missing Age or NetWorth
-df = df.dropna(subset=["Age", "NetWorth"])
+st.title("🌍 Gender Ratio Comparison of Billionaires by Country")
 
-# Sort top 50 richest
-df = df.sort_values(by='NetWorth', ascending=False).head(50)
+# Select country
+countries = df['country'].value_counts().index.tolist()
+selected_country = st.selectbox("Select a country:", countries)
 
-# Age group function
-def get_age_group(age):
-    if age < 30:
-        return "Under 30"
-    elif age <= 50:
-        return "31-50"
-    elif age <= 70:
-        return "51-70"
-    else:
-        return "Over 70"
+# Filter data by selected country
+df_country = df[df['country'] == selected_country]
 
-# Apply age group
-df["Age Group"] = df["Age"].apply(get_age_group)
+# Calculate gender ratio
+gender_counts = df_country['gender'].value_counts().reset_index()
+gender_counts.columns = ['Gender', 'Count']
+gender_counts['Percentage'] = (gender_counts['Count'] / gender_counts['Count'].sum() * 100).round(2)
 
-# Add state filter logic
-option = st.selectbox(
-    'Please select state:',
-    ('California', 'Florida', 'Texas', 'New York', 'Illinois')
+# Donut chart (Plotly)
+fig = px.pie(
+    gender_counts,
+    values='Count',
+    names='Gender',
+    hole=0.5,
+    color_discrete_sequence=px.colors.qualitative.Set3,
+    title=f"Gender Distribution of Billionaires in {selected_country}"
 )
-st.caption(f"You selected: {option}")
-
-# Filter data based on the selected state
-filtered_df = df[df['State'] == option]
-
-# Plot bar chart for filtered state
-fig = px.bar(
-    filtered_df,
-    x="NetWorth",
-    y="Age Group",
-    orientation="h",
-    color="Age Group",
-    hover_data=["Name", "NetWorth"],
-    title=f"Top 50 Billionaires by Age Group in {option}",
+fig.update_traces(textinfo='percent+label', hoverinfo='label+percent+value', pull=[0.05] * len(gender_counts))
+fig.update_layout(
+    showlegend=True,
+    margin=dict(t=50, b=20),
+    height=500
 )
 
-# Layout: chart and table
-col1, col2 = st.columns([3, 2])
+# Display chart and table
+st.plotly_chart(fig, use_container_width=True)
 
-with col1:
-    st.plotly_chart(fig, use_container_width=True)
+st.subheader(f"Gender Statistics Table in {selected_country}")
+st.dataframe(gender_counts)
 
-with col2:
-    st.subheader("Summary Table")
-    table = filtered_df.groupby("Age Group")[["NetWorth"]].count().rename(columns={"NetWorth": "Count"})
-    table["Total Net Worth ($B)"] = filtered_df.groupby("Age Group")["NetWorth"].sum().round(2)
-    st.dataframe(table)
+
