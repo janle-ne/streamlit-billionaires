@@ -12,15 +12,15 @@ st.markdown("""
 <h3><b>How Does Age Impact Wealth?</b></h3>
 <p>
 Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. 
-<span style="background-color:#ffe4b5">Younger billionaires</span> tend to dominate sectors like 
-<span style="background-color:#ffdab9">technology</span>, <span style="background-color:#e0ffff">social media</span>, and 
-<span style="background-color:#e6e6fa">e-commerce</span>, which offer massive returns in relatively short timeframes.
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">Younger billionaires</span> tend to dominate sectors like 
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">technology</span>, <span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">social media</span>, and 
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">e-commerce</span>, which offer massive returns in relatively short timeframes.
 </p>
 <p>
-On the other hand, <span style="background-color:#e0ffff">older billionaires</span> usually have 
-<span style="background-color:#ffe4e1">diversified portfolios</span> across sectors such as 
-<span style="background-color:#fafad2">luxury goods</span>, <span style="background-color:#e0ffff">finance</span>, and 
-<span style="background-color:#f5f5dc">energy</span>. Their vast fortunes have often been built over several decades through continuous investment and business development.
+On the other hand, <span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">older billionaires</span> usually have 
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">diversified portfolios</span> across sectors such as 
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">luxury goods</span>, <span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">finance</span>, and 
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">energy</span>. Their vast fortunes have often been built over several decades through continuous investment and business development.
 </p>
 <hr>
 <h4><b>Key Questions:</b></h4>
@@ -119,12 +119,12 @@ st.markdown("""
 <p>
 The distribution of billionaire wealth also reveals gender disparities. 
 While men still dominate the billionaire list globally, a growing number of 
-<span style="background-color:#ffdcdc">female billionaires</span> are emerging, especially in sectors like fashion, inheritance, and family business.
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">female billionaires</span> are emerging, especially in sectors like fashion, inheritance, and family business.
 </p>
 <p>
 Exploring gender distribution by country helps highlight both 
-<span style="background-color:#e0ffff">economic</span> and 
-<span style="background-color:#ffe4e1">cultural</span> factors that may influence wealth-building opportunities.
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">economic</span> and 
+<span style="background-color:#228B22;color:white;border-radius:4px;padding:2px 6px">cultural</span> factors that may influence wealth-building opportunities.
 </p>
 </div>
 """, unsafe_allow_html=True)
@@ -134,45 +134,4 @@ Exploring gender distribution by country helps highlight both
 def load_data():
     df = pd.read_csv("BillionairesData.csv")
     df = df.dropna(subset=["country", "gender"])
-    df["gender"] = df["gender"].map({"F": "Female", "M": "Male"})
-    return df
-
-df = load_data()
-
-# Select country
-countries = df['country'].value_counts().index.tolist()
-selected_country = st.selectbox("Select a country:", countries)
-
-# Filter data by selected country
-df_country = df[df['country'] == selected_country]
-
-# Calculate gender ratio
-gender_counts = df_country['gender'].value_counts().reset_index()
-gender_counts.columns = ['Gender', 'Count']
-gender_counts['Percentage'] = (gender_counts['Count'] / gender_counts['Count'].sum() * 100).round(2)
-
-# Donut chart
-fig = px.pie(
-    gender_counts,
-    values='Count',
-    names='Gender',
-    hole=0.5,
-    color_discrete_sequence=px.colors.qualitative.Set3,
-    title=f"Gender Distribution of Billionaires in {selected_country}"
-)
-fig.update_traces(
-    textinfo='percent+label', 
-    hoverinfo='label+percent+value', 
-    pull=[0.05] * len(gender_counts)
-)
-fig.update_layout(
-    showlegend=True,
-    margin=dict(t=50, b=20),
-    height=500
-)
-
-# Display chart and table
-st.plotly_chart(fig, use_container_width=True)
-
-st.subheader(f"Gender Statistics Table in {selected_country}")
-st.dataframe(gender_counts)
+    df["gender"] = df["
