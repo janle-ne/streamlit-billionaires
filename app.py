@@ -102,6 +102,18 @@ with col2:
         use_container_width=True
     )
 
+# Gender Ratio Visualization
+# Load data for gender distribution by country
+@st.cache_data
+def load_data():
+    df = pd.read_csv("BillionairesData.csv")
+    df = df.dropna(subset=["country", "gender"])  # Handle missing data
+    return df
+
+df = load_data()
+
+st.title("🌍 Gender Ratio Comparison of Billionaires by Country")
+
 # Gender Ratio of Billionaires Content
 st.markdown("""
 ### **Gender Ratio of Billionaires**
@@ -129,18 +141,6 @@ However, as societal norms evolve and more women enter the business world with g
 - **What is the gender distribution of billionaires by country?**
 - **Which countries have a more balanced gender ratio among billionaires?**
 """)
-
-# Gender Ratio Visualization
-# Load data for gender distribution by country
-@st.cache_data
-def load_data():
-    df = pd.read_csv("BillionairesData.csv")
-    df = df.dropna(subset=["country", "gender"])  # Handle missing data
-    return df
-
-df = load_data()
-
-st.title("🌍 Gender Ratio Comparison of Billionaires by Country")
 
 # Select country
 countries = df['country'].value_counts().index.tolist()
