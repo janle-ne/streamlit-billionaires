@@ -2,12 +2,14 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# Cấu hình giao diện rộng
+st.set_page_config(layout="wide")
 st.title("💰 Which Age Group Holds the Most Wealth?")
 
-# Load dữ liệu
+# Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
 
-# Chuẩn hóa tên cột
+# Chuẩn hóa cột
 df.rename(columns={
     'finalWorth': 'NetWorth',
     'personName': 'Name',
@@ -15,10 +17,10 @@ df.rename(columns={
     'gender': 'Gender'
 }, inplace=True)
 
-# Loại bỏ dữ liệu thiếu
+# Xóa dòng thiếu dữ liệu quan trọng
 df = df.dropna(subset=["Age", "NetWorth", "Gender"])
 
-# Nhóm tuổi theo yêu cầu
+# Nhóm tuổi tùy chỉnh
 def get_age_group(age):
     if age <= 20:
         return "Under 20"
@@ -35,32 +37,43 @@ def get_age_group(age):
 
 df["Age Group"] = df["Age"].apply(get_age_group)
 
-# Selectbox chọn nhóm tuổi
+# Bộ lọc nhóm tuổi
 age_groups = ["All", "Under 20", "21–30", "31–40", "41–50", "51–60", "61+"]
-selected_group = st.selectbox("Select Age Group", age_groups)
+selected_group = st.selectbox("🎯 Select Age Group", age_groups)
 
-# Lọc theo nhóm tuổi nếu chọn khác "All"
+# Lọc dữ liệu theo nhóm tuổi
+filtered_df = df.copy()
 if selected_group != "All":
-    df = df[df["Age Group"] == selected_group]
+    filtered_df = df[df["Age Group"] == selected_group]
 
-# Top 10 tỷ phú theo giá trị ròng
-top_10 = df.sort_values(by="NetWorth", ascending=False).head(10)
+# Chọn top 10 theo tài sản
+top10 = filtered_df.sort_values(by="NetWorth", ascending=False).head(10)
 
 # Biểu đồ
 fig = px.bar(
-    top_10,
+    top10,
     x="Age",
     y="NetWorth",
-    orientation="v",
     hover_name="Name",
-    hover_data={"NetWorth": True, "Name": False},
+    hover_data={"NetWorth": True, "Age": True, "Name": False},
     color="Age",
-    title="Top 10 Billionaires by Age and Net Worth"
+    title="Top 10 Billionaires by Net Worth in Selected Age Group"
 )
-fig.update_layout(xaxis_title="Age", yaxis_title="Net Worth (Billion $)")
+fig.update_layout(
+    xaxis_title="Age",
+    yaxis_title="Net Worth (Billion $)",
+    hoverlabel=dict(bgcolor="white", font_size=12)
+)
 
-st.plotly_chart(fig, use_container_width=True)
+# Hiển thị biểu đồ và bảng song song
+col1, col2 = st.columns([3, 2])
 
-# Bảng dữ liệu
-st.subheader("Top 10 Billionaires (Filtered by Age Group)")
-st.dataframe(top_10[["Name", "Age", "NetWorth", "Gender"]].reset_index(drop=True))
+with col1:
+    st.plotly_chart(fig, use_container_width=True)
+
+with col2:
+    st.subheader("📊 Top 10 Billionaires")
+    st.dataframe(
+        top10[["Name", "Age", "Gender", "NetWorth"]].reset_index(drop=True),
+        use_container_width=True
+    )
