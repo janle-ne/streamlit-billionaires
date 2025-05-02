@@ -10,9 +10,9 @@ st.title("💰 Which Age Group Holds the Most Wealth?")
 st.markdown("""
 ### **How Does Age Impact Wealth?**
 
-Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. **Younger billionaires** tend to dominate sectors like **technology**, **social media**, and **e-commerce**, which offer massive returns in relatively short timeframes. Many of today’s **young billionaires** made their fortunes by tapping into the rapid growth of these innovative industries.
+Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. **_Younger billionaires_** tend to dominate sectors like **_technology_**, **_social media_**, and **_e-commerce_**, which offer massive returns in relatively short timeframes. Many of today’s **_young billionaires_** made their fortunes by tapping into the rapid growth of these innovative industries.
 
-On the other hand, **older billionaires** usually have **diversified portfolios** across sectors such as **luxury goods**, **finance**, and **energy**. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
+On the other hand, **_older billionaires_** usually have **_diversified portfolios_** across sectors such as **_luxury goods_**, **_finance_**, and **_energy_**. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
 
 ---
 
@@ -106,24 +106,24 @@ with col2:
 st.markdown("""
 ### **Gender Ratio of Billionaires**
 
-In recent years, discussions about gender equality in business and wealth distribution have gained momentum. One area of interest is the gender ratio of billionaires globally. While the number of women billionaires is growing, the wealthiest individuals are still predominantly male. This gender disparity can be attributed to various factors, such as access to resources, societal expectations, and opportunities available in different industries.
+In recent years, discussions about **_gender equality_** in business and wealth distribution have gained momentum. One area of interest is the **_gender ratio_** of billionaires globally. While the number of **_women billionaires_** is growing, the wealthiest individuals are still predominantly **_male_**. This **_gender disparity_** can be attributed to various factors, such as access to resources, societal expectations, and opportunities available in different industries.
 
 ### **Key Insights:**
-- **Male Billionaires:** The majority of billionaires worldwide are men, particularly in industries such as finance, energy, and manufacturing, where historical male dominance has been strong. These sectors have traditionally been the backbone of wealth creation, leading to a higher concentration of male billionaires.
+- **_Male Billionaires_**: The majority of billionaires worldwide are **_men_**, particularly in industries such as **_finance_**, **_energy_**, and **_manufacturing_**, where historical male dominance has been strong. These sectors have traditionally been the backbone of wealth creation, leading to a higher concentration of male billionaires.
   
-- **Female Billionaires:** Although fewer in number, female billionaires are making strides, especially in sectors such as retail, media, and fashion. Women who inherit wealth or have entrepreneurial ventures in consumer-driven sectors are increasingly appearing on the list of the wealthiest individuals.
+- **_Female Billionaires_**: Although fewer in number, **_female billionaires_** are making strides, especially in sectors such as **_retail_**, **_media_**, and **_fashion_**. Women who inherit wealth or have entrepreneurial ventures in consumer-driven sectors are increasingly appearing on the list of the wealthiest individuals.
 
-- **Emerging Trends:** There has been a notable increase in the number of self-made female billionaires, particularly in technology, pharmaceuticals, and beauty industries. These sectors offer opportunities for innovation and growth, allowing women to break through traditional barriers.
+- **Emerging Trends**: There has been a notable increase in the number of **_self-made female billionaires_**, particularly in **_technology_**, **_pharmaceuticals_**, and **_beauty industries_**. These sectors offer opportunities for innovation and growth, allowing women to break through traditional barriers.
 
 ### **Challenges and Opportunities for Women Billionaires:**
 Despite the increasing number of female billionaires, women still face significant barriers to wealth accumulation compared to their male counterparts. These challenges include:
-- Limited access to venture capital and business networks
-- Gender biases in investment opportunities and leadership roles
+- Limited access to **_venture capital_** and business networks
+- **_Gender biases_** in investment opportunities and leadership roles
 - Societal expectations around the roles of women in both family and business
 
-However, as societal norms evolve and more women enter the business world with groundbreaking ideas, the gap is slowly narrowing. Female billionaires like **Oprah Winfrey**, **Kylie Jenner**, and **Francoise Bettencourt Meyers** show that women can successfully create and grow massive fortunes.
+However, as societal norms evolve and more women enter the business world with groundbreaking ideas, the gap is slowly narrowing. **_Female billionaires_** like **_Oprah Winfrey_**, **_Kylie Jenner_**, and **_Francoise Bettencourt Meyers_** show that women can successfully create and grow massive fortunes.
 
---- 
+---
 
 ### **Key Question:**
 - **What is the gender distribution of billionaires by country?**
