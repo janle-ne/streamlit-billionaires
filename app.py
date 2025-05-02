@@ -6,6 +6,20 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 st.title("💰 Which Age Group Holds the Most Wealth?")
 
+# Thêm nội dung vào website
+st.markdown("""
+### **How Does Age Impact Wealth?**
+
+Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. **Younger billionaires** tend to dominate sectors like **technology**, **social media**, and **e-commerce**, which offer massive returns in relatively short timeframes. Many of today’s **young billionaires** made their fortunes by tapping into the rapid growth of these innovative industries.
+
+On the other hand, **older billionaires** usually have **diversified portfolios** across sectors such as **luxury goods**, **finance**, and **energy**. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
+
+---
+
+### **Key Questions:**
+- **Which Age Group Holds the Most Wealth?**
+""")
+
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
 
