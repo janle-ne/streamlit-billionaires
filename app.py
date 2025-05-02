@@ -8,17 +8,33 @@ st.title("💰 Which Age Group Holds the Most Wealth?")
 
 # Thêm nội dung vào website
 st.markdown("""
-### **How Does Age Impact Wealth?**
+<div style="background-color:#fdf6e3;padding:1rem;border-radius:10px">
+<h3><b>How Does Age Impact Wealth?</b></h3>
 
-Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. **Younger billionaires** tend to dominate sectors like **technology**, **social media**, and **e-commerce**, which offer massive returns in relatively short timeframes. Many of today’s **young billionaires** made their fortunes by tapping into the rapid growth of these innovative industries.
+<p>
+Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">Younger billionaires</span> tend to dominate sectors like 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">technology</span>, 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">social media</span>, and 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">e-commerce</span>, which offer massive returns in relatively short timeframes.
+</p>
 
-On the other hand, **older billionaires** usually have **diversified portfolios** across sectors such as **luxury goods**, **finance**, and **energy**. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
+<p>
+On the other hand, <span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">older billionaires</span> usually have 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">diversified portfolios</span> across sectors such as 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">luxury goods</span>, 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">finance</span>, and 
+<span style="background-color:#228B22; color:white; border-radius:4px; padding:0.2rem">energy</span>.
+</p>
 
----
+<hr>
 
-### **Key Questions:**
-- **Which Age Group Holds the Most Wealth?**
-""")
+<h4><b>Key Questions:</b></h4>
+<ul>
+<li><b>Which Age Group Holds the Most Wealth?</b></li>
+</ul>
+</div>
+""", unsafe_allow_html=True)
 
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
@@ -82,9 +98,9 @@ fig.update_layout(
     xaxis_title="Age",
     yaxis_title="Net Worth (Billion $)",
     hoverlabel=dict(
-        bgcolor="black",  # Nền hover là màu đen
-        font_color="white",  # Chữ trong hover là màu trắng
-        font_size=12  # Kích thước chữ
+        bgcolor="black",
+        font_color="white",
+        font_size=12
     )
 )
 
@@ -96,12 +112,7 @@ with col1:
 
 with col2:
     st.subheader("📊 Top 10 Billionaires")
-    # Hiển thị bảng có thêm cột Rank
     st.dataframe(
         top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),
         use_container_width=True
     )
-
-
-# Display chart and table
-st.plotly_chart(fig, use_container_width=True)
