@@ -101,9 +101,37 @@ with col2:
         top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),
         use_container_width=True
     )
-st.set_page_config(page_title="Gender Ratio of Billionaires", layout="wide")
 
-# Load data
+# Gender Ratio of Billionaires Content
+st.markdown("""
+### **Gender Ratio of Billionaires**
+
+In recent years, discussions about gender equality in business and wealth distribution have gained momentum. One area of interest is the gender ratio of billionaires globally. While the number of women billionaires is growing, the wealthiest individuals are still predominantly male. This gender disparity can be attributed to various factors, such as access to resources, societal expectations, and opportunities available in different industries.
+
+### **Key Insights:**
+- **Male Billionaires:** The majority of billionaires worldwide are men, particularly in industries such as finance, energy, and manufacturing, where historical male dominance has been strong. These sectors have traditionally been the backbone of wealth creation, leading to a higher concentration of male billionaires.
+  
+- **Female Billionaires:** Although fewer in number, female billionaires are making strides, especially in sectors such as retail, media, and fashion. Women who inherit wealth or have entrepreneurial ventures in consumer-driven sectors are increasingly appearing on the list of the wealthiest individuals.
+
+- **Emerging Trends:** There has been a notable increase in the number of self-made female billionaires, particularly in technology, pharmaceuticals, and beauty industries. These sectors offer opportunities for innovation and growth, allowing women to break through traditional barriers.
+
+### **Challenges and Opportunities for Women Billionaires:**
+Despite the increasing number of female billionaires, women still face significant barriers to wealth accumulation compared to their male counterparts. These challenges include:
+- Limited access to venture capital and business networks
+- Gender biases in investment opportunities and leadership roles
+- Societal expectations around the roles of women in both family and business
+
+However, as societal norms evolve and more women enter the business world with groundbreaking ideas, the gap is slowly narrowing. Female billionaires like **Oprah Winfrey**, **Kylie Jenner**, and **Francoise Bettencourt Meyers** show that women can successfully create and grow massive fortunes.
+
+--- 
+
+### **Key Question:**
+- **What is the gender distribution of billionaires by country?**
+- **Which countries have a more balanced gender ratio among billionaires?**
+""")
+
+# Gender Ratio Visualization
+# Load data for gender distribution by country
 @st.cache_data
 def load_data():
     df = pd.read_csv("BillionairesData.csv")
