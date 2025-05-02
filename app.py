@@ -10,15 +10,15 @@ st.title("💰 Which Age Group Holds the Most Wealth?")
 st.markdown("""
 ### **How Does Age Impact Wealth?**
 
-Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. **_Younger billionaires_** tend to dominate sectors like **_technology_**, **_social media_**, and **_e-commerce_**, which offer massive returns in relatively short timeframes. Many of today’s **_young billionaires_** made their fortunes by tapping into the rapid growth of these innovative industries.
+Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. <span style='background-color: #FFDAB9;'>Younger billionaires</span> tend to dominate sectors like <span style='background-color: #FFDAB9;'>technology</span>, <span style='background-color: #FFDAB9;'>social media</span>, and <span style='background-color: #FFDAB9;'>e-commerce</span>, which offer massive returns in relatively short timeframes. Many of today’s <span style='background-color: #FFDAB9;'>young billionaires</span> made their fortunes by tapping into the rapid growth of these innovative industries.
 
-On the other hand, **_older billionaires_** usually have **_diversified portfolios_** across sectors such as **_luxury goods_**, **_finance_**, and **_energy_**. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
+On the other hand, <span style='background-color: #FFDAB9;'>older billionaires</span> usually have <span style='background-color: #FFDAB9;'>diversified portfolios</span> across sectors such as <span style='background-color: #FFDAB9;'>luxury goods</span>, <span style='background-color: #FFDAB9;'>finance</span>, and <span style='background-color: #FFDAB9;'>energy</span>. Their vast fortunes have often been built over several decades through continuous investment and business development, establishing wealth that compounds over time.
 
 ---
 
 ### **Key Questions:**
 - **Which Age Group Holds the Most Wealth?**
-""")
+""", unsafe_allow_html=True)
 
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
@@ -128,7 +128,7 @@ However, as societal norms evolve and more women enter the business world with g
 ### **Key Question:**
 - **What is the gender distribution of billionaires by country?**
 - **Which countries have a more balanced gender ratio among billionaires?**
-""")
+""", unsafe_allow_html=True)
 
 # Gender Ratio Visualization
 # Load data for gender distribution by country
@@ -160,9 +160,13 @@ fig = px.pie(
     values='Count',
     names='Gender',
     hole=0.5,
-    color_discrete_sequence=px.colors.qualitative.Set3,
+    color_discrete_sequence=px.colors.sequential.Pastel,
     title=f"Gender Distribution of Billionaires in {selected_country}"
 )
+
+# Replace 'F' and 'M' with 'Female' and 'Male'
+gender_counts['Gender'] = gender_counts['Gender'].replace({'F': 'Female', 'M': 'Male'})
+
 fig.update_traces(textinfo='percent+label', hoverinfo='label+percent+value', pull=[0.05] * len(gender_counts))
 fig.update_layout(
     showlegend=True,
