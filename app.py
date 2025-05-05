@@ -18,6 +18,7 @@ Key Insights:
 - Billionaires under 30 remain a minority, contributing a small share despite media attention on young tech founders.
 - Wealth consolidation typically peaks after age 50, highlighting the power of compounding and strategic financial planning.
 """)
+
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
 
@@ -72,7 +73,7 @@ fig = px.bar(
     hover_name="Name",
     hover_data={"NetWorth": True, "Age": True, "Name": False},
     color="Age",
-    title="Top 10 Billionaires by Net Worth in Selected Age Group"
+    title=f"Top 10 Billionaires by Net Worth in {selected_group} Age Group"
 )
 
 # Cập nhật hover label
