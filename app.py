@@ -8,16 +8,15 @@ st.title("💰 Which Age Group Holds the Most Wealth?")
 
 # Thêm nội dung vào website
 st.markdown("""
-How Does Age Impact Wealth?
-
-Wealth accumulation often peaks later in life, but certain individuals start amassing significant fortunes at much younger ages. Younger billionaires tend to dominate sectors like technology, social media, and e-commerce, which offer massive returns in relatively short timeframes.
-
-On the other hand, older billionaires usually have diversified portfolios across sectors such as luxury goods, finance, and energy.
+This analysis showcases the top 10 billionaires by net worth, based on the 2023 dataset. The list highlights the wealthiest individuals across various age groups, ranked by their total wealth. The data reveals how these billionaires have accumulated massive fortunes, with younger billionaires benefitting from industries like technology and social media, while older billionaires often have diversified portfolios across multiple sectors. The top 10 showcase the diverse paths to achieving billionaire status, emphasizing how long-term growth, strategic investments, and industry dominance contribute to their financial success.
 
 ---
 
-Key Questions:
-- Which Age Group Holds the Most Wealth?
+Key Insights:
+- The 61+ age group holds the largest share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.
+- Net worth grows consistently with age, with sharp increases observed after age 40.
+- Billionaires under 30 remain a minority, contributing a small share despite media attention on young tech founders.
+- Wealth consolidation typically peaks after age 50, highlighting the power of compounding and strategic financial planning.
 """)
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
