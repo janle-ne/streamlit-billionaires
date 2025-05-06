@@ -19,6 +19,7 @@ This analysis showcases the top 10 billionaires by net worth, based on the 2023 
 - <span style='background-color: #FFD700; font-weight: bold;'>Wealth consolidation typically peaks after age 50</span>, highlighting the power of compounding and strategic financial planning.
 """, unsafe_allow_html=True)
 
+
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
 
@@ -73,7 +74,7 @@ fig = px.bar(
     hover_name="Name",
     hover_data={"NetWorth": True, "Age": True, "Name": False},
     color="Age",
-    title=f"Top 10 Billionaires by Net Worth in {selected_group} Age Group" if selected_group != "All" else "Top 10 Billionaires by Net Worth (All Ages)"
+    title=f"Top 10 Billionaires by Net Worth in {selected_group} Age Group"
 )
 
 # Cập nhật hover label
@@ -96,6 +97,6 @@ with col1:
 with col2:
     st.subheader("📊 Top 10 Billionaires")
     st.dataframe(
-        top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),  # Ẩn index
+        top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),
         use_container_width=True
     )
