@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from annotated_text import annotated_text
 
 # Cấu hình giao diện rộng
 st.set_page_config(layout="wide")
@@ -12,25 +11,13 @@ st.markdown("""
 This analysis showcases the top 10 billionaires by net worth, based on the 2023 dataset. The list highlights the wealthiest individuals across various age groups, ranked by their total wealth. The data reveals how these billionaires have accumulated massive fortunes, with younger billionaires benefitting from industries like technology and social media, while older billionaires often have diversified portfolios across multiple sectors. The top 10 showcase the diverse paths to achieving billionaire status, emphasizing how long-term growth, strategic investments, and industry dominance contribute to their financial success.
 
 ---
-""")
 
-# Sử dụng annotated_text để highlight các từ
-st.subheader("📍Key Insights")
-annotated_text(
-    "The ", 
-    ("61+", "age group", "#FFD700"), 
-    " holds the ", 
-    ("largest", "", "#FFD700"), 
-    " share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.\n",
-    ("Net worth grows consistently with age", "", "#FFD700"), 
-    ", with sharp increases observed ", 
-    ("after age 40", "", "#FFD700"), 
-    ".\n",
-    ("Billionaires under 30 remain a minority", "", "#FFD700"), 
-    ", contributing a small share despite media attention on young tech founders.\n",
-    ("Wealth consolidation typically peaks after age 50", "", "#FFD700"),
-    ", highlighting the power of compounding and strategic financial planning."
-)
+**📍Key Insights:**
+- The <span style='background-color: #FFD700; font-weight: bold;'>61+</span> age group holds the <span style='background-color: #FFD700; font-weight: bold;'>largest</span> share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.
+- <span style='background-color: #FFD700; font-weight: bold;'>Net worth grows consistently with age</span>, with sharp increases observed <span style='background-color: #FFD700; font-weight: bold;'>after age 40</span>.
+- <span style='background-color: #FFD700; font-weight: bold;'>Billionaires under 30 remain a minority</span>, contributing a small share despite media attention on young tech founders.
+- <span style='background-color: #FFD700; font-weight: bold;'>Wealth consolidation typically peaks after age 50</span>, highlighting the power of compounding and strategic financial planning.
+""", unsafe_allow_html=True)
 
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
@@ -86,7 +73,7 @@ fig = px.bar(
     hover_name="Name",
     hover_data={"NetWorth": True, "Age": True, "Name": False},
     color="Age",
-    title=f"Top 10 Billionaires by Net Worth in {selected_group} Age Group"
+    title=f"Top 10 Billionaires by Net Worth in {selected_group} Age Group" if selected_group != "All" else "Top 10 Billionaires by Net Worth (All Ages)"
 )
 
 # Cập nhật hover label
@@ -109,6 +96,6 @@ with col1:
 with col2:
     st.subheader("📊 Top 10 Billionaires")
     st.dataframe(
-        top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),
+        top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),  # Ẩn index
         use_container_width=True
     )
