@@ -13,11 +13,11 @@ This analysis showcases the top 10 billionaires by net worth, based on the 2023 
 ---
 
 Key Insights:
-- The 61+ age group holds the largest share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.
-- Net worth grows consistently with age, with sharp increases observed after age 40.
-- Billionaires under 30 remain a minority, contributing a small share despite media attention on young tech founders.
-- Wealth consolidation typically peaks after age 50, highlighting the power of compounding and strategic financial planning.
-""")
+- The <span style='color:#FFD700; font-weight:bold;'>61+</span> age group holds the <span style='color:#FFD700; font-weight:bold;'>largest</span> share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.
+- <span style='color:#FFD700; font-weight:bold;'>Net worth grows consistently with age</span>, with sharp increases observed <span style='color:#FFD700; font-weight:bold;'>after age 40</span>.
+- <span style='color:#FFD700; font-weight:bold;'>Billionaires under 30 remain a minority</span>, contributing a small share despite media attention on young tech founders.
+- <span style='color:#FFD700; font-weight:bold;'>Wealth consolidation typically peaks after age 50</span>, highlighting the power of compounding and strategic financial planning.
+""", unsafe_allow_html=True)
 
 # Tải dữ liệu
 df = pd.read_csv("BillionairesData.csv", encoding="utf-8-sig")
