@@ -12,12 +12,13 @@ This analysis showcases the top 10 billionaires by net worth, based on the 2023 
 
 ---
 
-**📍Key Insights:**
-- The <span style='background-color: #FFD700; font-weight: bold;'>61+</span> age group holds the <span style='background-color: #FFD700; font-weight: bold;'>largest</span> share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.
-- <span style='background-color: #FFD700; font-weight: bold;'>Net worth grows consistently with age</span>, with sharp increases observed <span style='background-color: #FFD700; font-weight: bold;'>after age 40</span>.
-- <span style='background-color: #FFD700; font-weight: bold;'>Billionaires under 30 remain a minority</span>, contributing a small share despite media attention on young tech founders.
-- <span style='background-color: #FFD700; font-weight: bold;'>Wealth consolidation typically peaks after age 50</span>, highlighting the power of compounding and strategic financial planning.
+Key Insights:
+- The <span style='color:#FFD700; font-weight:bold;'>61+</span> age group holds the <span style='color:#FFD700; font-weight:bold;'>largest</span> share of total billionaire net worth, underscoring the long-term nature of wealth accumulation.
+- <span style='color:#FFD700; font-weight:bold;'>Net worth grows consistently with age</span>, with sharp increases observed <span style='color:#FFD700; font-weight:bold;'>after age 40</span>.
+- <span style='color:#FFD700; font-weight:bold;'>Billionaires under 30 remain a minority</span>, contributing a small share despite media attention on young tech founders.
+- <span style='color:#FFD700; font-weight:bold;'>Wealth consolidation typically peaks after age 50</span>, highlighting the power of compounding and strategic financial planning.
 """, unsafe_allow_html=True)
+
 
 
 # Tải dữ liệu
