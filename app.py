@@ -101,7 +101,7 @@ def show():
         if selected_group == "All":
             st.subheader("📊 Top 10 Billionaires")
         else:
-            st.subheader(f"📊 Top Billionaires in {selected_group} Group)")
+            st.subheader(f"📊 Top Billionaires in {selected_group} Group")
 
         st.dataframe(
             top10[["Rank", "Name", "Age", "NetWorth"]].reset_index(drop=True),
