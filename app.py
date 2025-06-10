@@ -1,4 +1,26 @@
+import streamlit as st
+import pandas as pd
 import plotly.express as px
+from annotated_text import annotated_text
+import plotly.graph_objects as go
+
+@st.cache_data
+def load_data():
+    df = pd.read_csv("Billionaires Statistics Dataset.csv", encoding="utf-8-sig")
+    df.rename(columns={
+        'finalWorth': 'NetWorth',
+        'personName': 'Name',
+        'age': 'Age',
+        'gender': 'Gender'
+    }, inplace=True)
+    df = df.dropna(subset=["Age", "NetWorth", "Gender", "country"])
+    df['gender'] = df['Gender'].replace({"M": "Male", "F": "Female"})
+    return df
+
+df = load_data()
+
+def show():
+    import plotly.express as px
 import streamlit as st
 
 st.markdown("Select an age group to view key insights.")
